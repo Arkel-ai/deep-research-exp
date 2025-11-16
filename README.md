@@ -53,7 +53,7 @@ The Deep Research System is an autonomous AI research assistant built with CrewA
 ### Components
 
 1. **Research Agent** - A unified AI agent that handles planning, research, and writing
-2. **Research Tools** - Four specialized tools for different research tasks
+2. **Research Tools** - Three specialized tools for different research tasks
 3. **Task Orchestration** - CrewAI-based workflow management
 4. **Persistent Planning** - JSON-based TODO tracking system
 
@@ -64,7 +64,6 @@ The Deep Research System is an autonomous AI research assistant built with CrewA
 | `update_research_plan` | Create and manage TODO lists   | - Persistent JSON storage- Status tracking (pending/in_progress/completed)- Merge updates                                                |
 | `web_search_tool`      | Search the web for information | - AI-powered search (Exa AI)- Domain filtering- Category filtering (company, news, linkedin, pdf, etc.)- Search types (auto/neural/deep) |
 | `get_webpage_content`  | Extract full webpage content   | - Live crawling- AI summaries- Link extraction- Subpage crawling                                                                         |
-| `web_research_tool`    | Deep-dive research on topics   | - Extended content analysis- Multi-source aggregation                                                                                    |
 
 ## 🔄 Research Workflow
 
@@ -84,10 +83,9 @@ flowchart TD
     Search --> Filter{Need Specific<br/>Content?}
   
     Filter -->|Yes| GetContent[Get Webpage Content]
-    Filter -->|No| Research[Web Research Tool]
+    Filter -->|No| Analyze[Analyze & Extract Info]
   
-    GetContent --> Analyze[Analyze & Extract Info]
-    Research --> Analyze
+    GetContent --> Analyze
   
     Analyze --> MarkDone[Mark TODO as 'completed']
     MarkDone --> Loop
@@ -104,7 +102,6 @@ flowchart TD
     style Plan fill:#fff4e1
     style Search fill:#f0e1ff
     style GetContent fill:#f0e1ff
-    style Research fill:#f0e1ff
     style Compile fill:#e1ffe1
     style Output fill:#e1f5ff
 ```
@@ -154,8 +151,7 @@ For each TODO item, the agent:
    - Fetches full text content
    - Gets AI-generated summaries
    - Extracts related links
-4. **Deep-dives** using `web_research_tool` for specific topics
-5. **Marks the item as "completed"**
+4. **Marks the item as "completed"**
 
 **Tool Usage Examples:**
 
@@ -509,8 +505,7 @@ deep-research/
 └── tools/
     ├── __init__.py
     ├── plan.py               # Research planning tool
-    ├── web_search.py         # Web search and content tools
-    └── web_research.py       # Deep research tool
+    └── web_search.py         # Web search and content tools
 
 ```
 

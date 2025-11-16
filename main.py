@@ -7,7 +7,7 @@ import logging
 from datetime import datetime
 from crewai import LLM, Agent, Task, Crew, Process
 from dotenv import load_dotenv
-from tools import web_search_tool, get_webpage_content, web_research_tool, update_research_plan
+from tools import web_search_tool, get_webpage_content, update_research_plan
 from app.config import logger
 
 load_dotenv()
@@ -133,7 +133,7 @@ research_agent = Agent(
     
     **Research Execution:**
     4. Using web_search to find relevant sources quickly
-    5. Using web_research for deep dives into specific topics
+    5. Using get_webpage_content to extract full content from specific URLs
     6. Cross-referencing information across multiple sources
     7. Documenting findings with proper citations
     8. Identifying contradictions and knowledge gaps
@@ -150,7 +150,6 @@ research_agent = Agent(
         update_research_plan,
         web_search_tool,
         get_webpage_content,
-        web_research_tool,
     ],
     llm=llm,
     verbose=False,
@@ -197,7 +196,6 @@ research_task = Task(
     In deep research mode, ALL information presented must come from verified sources:
     - Use web_search to find relevant sources for each TODO item
     - Use get_webpage_content to extract full content from specific URLs you found
-    - Use web_research for deep dives into specific topics
     - Before using any tool, provide your reasoning for that choice
     - Collect all necessary data concisely and thoroughly
     - Gather data from multiple sources to ensure accuracy
