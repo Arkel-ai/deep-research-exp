@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+openai
+httpx
+python-dotenv
+crewai
+crewai-tools
+litellm
+requests
