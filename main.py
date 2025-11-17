@@ -171,6 +171,8 @@ research_task = Task(
     
     Use the update_research_plan tool to create a TODO list outlining the main areas of 
     investigation. Break down the research into 10-15 specific, actionable steps.
+    Before doing ANY research, you MUST create a COMPLETE TODO list 
+    with ALL 10-15 items upfront, ALL with status "pending".
     
     **IMPORTANT**: You must pass a list of TODO dictionaries to the tool. Each TODO must have:
     - 'id': unique identifier (e.g., "step-1", "step-2", "step-3")
@@ -184,8 +186,7 @@ research_task = Task(
             {{"id": "step-1", "status": "pending", "content": "..."}},
             {{"id": "step-2", "status": "pending", "content": "..."}},
             {{"id": "step-3", "status": "pending", "content": "..."}},
-            {{"id": "step-4", "status": "pending", "content": "..."}},
-            {{"id": "step-5", "status": "pending", "content": "..."}}
+            ... // continue with ALL items "pending"
         ],
         explanation="Creating initial research plan for {query}"
     )
@@ -299,6 +300,10 @@ def monitor_plan():
     plan_file = ".research_plan.json"
     last_content = None
     first_render = True
+
+    logger.info("Starting real-time plan monitoring")
+    print("\n📋 Research Plan Monitor")
+    print("=" * 60)
 
     # Save cursor position after header
     print("\033[s", end="", flush=True)
